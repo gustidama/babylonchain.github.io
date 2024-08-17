@@ -1,10 +1,8 @@
-
 // @ts-nocheck
-// Note: type annotations allow type checking and IDEs autocompletion
+// Note: Type annotations allow type checking and IDE autocompletion
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -12,163 +10,146 @@ const config = {
   tagline: 'Unlocking 21 Million Bitcoin to Secure the Decentralized Economy',
   url: 'https://docs.babylonchain.io',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: 'throw', // Throws an error on broken links to ensure documentation integrity
+  onBrokenMarkdownLinks: 'warn', // Warns about broken markdown links without failing the build
   favicon: 'img/favicon_black.png',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'babylonchain', // Usually your GitHub org/user name.
-  projectName: 'babylonchain.github.io', // Usually your repo name.
+  // GitHub pages deployment config
+  organizationName: 'babylonchain', // Your GitHub org/user name
+  projectName: 'babylonchain.github.io', // Your repo name
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
-  // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
-  // to replace "en" with "zh-Hans".
+
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en'], // Specify supported languages
   },
 
   presets: [
     [
       'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           includeCurrentVersion: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/', // Link for editing docs on GitHub
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/', // Link for editing blog posts on GitHub
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve('./src/css/custom.css'), // Custom CSS for additional styling
         },
-      }),
+      },
     ],
     [
       'redocusaurus',
       {
-        // Plugin Options for loading OpenAPI files
         specs: [
           {
             id: 'grpc',
             spec: 'swagger.yaml',
-            route: 'docs/developer-guides/grpcrestapi',
+            route: 'docs/developer-guides/grpcrestapi', // Path to the API documentation
           },
         ],
-        // Theme Options for modifying how redoc renders them
         theme: {
-          // Change with your site colors
-          primaryColor: '#000000',
-          
+          primaryColor: '#000000', // Custom primary color for Redocusaurus theme
         },
       },
     ],
   ],
 
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      docs: {
-        sidebar: {
-          hideable: true,
-          autoCollapseCategories: true,
+  themeConfig: {
+    docs: {
+      sidebar: {
+        hideable: true, // Allows hiding the sidebar
+        autoCollapseCategories: true, // Automatically collapses categories
+      },
+    },
+    navbar: {
+      hideOnScroll: true, // Navbar hides on scroll for a cleaner UI
+      logo: {
+        alt: 'Babylon',
+        src: 'img/logo_black.svg',
+        srcDark: 'img/logo_white.svg', // Dark mode logo
+      },
+      items: [
+        {
+          type: 'doc',
+          docId: 'introduction/overview',
+          position: 'left',
+          label: 'Docs',
         },
-      },
-      navbar: {
-        title: '',
-        hideOnScroll: true,
-        logo: {
-          alt: 'Babylon',
-          srcDark: 'img/logo_white.svg',
-          src: 'img/logo_black.svg',
+        {
+          to: 'docs/developer-guides/grpcrestapi',
+          position: 'left',
+          label: 'API',
         },
-        items: [
-          {
-            type: 'doc',
-            position: 'left',
-            docId: 'introduction/overview',
-            label: 'Docs',
-          },
-          {
-            to: 'docs/developer-guides/grpcrestapi',
-            position: 'left',
-            label: 'API',
-          },
-          //{to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/babylonchain',
-            label: 'GitHub',
-            position: 'right',
-          },
-          {
-            href: 'https://babylonchain.io/about',
-            label: 'About',
-            position: 'right',
-          },
-          {
-            href: 'https://babylonchain.io/contact',
-            label: 'Contact',
-            position: 'right',
-          },
-        ],
-      },
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Documentation',
-                to: '/docs/introduction/overview',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'LinkedIn',
-                href: 'https://www.linkedin.com/company/babylon-chain',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://www.twitter.com/babylon_chain',
-              },
-              {
-                label: 'Youtube',
-                href: 'https://www.youtube.com/channel/UCmnied_wAVVa2ECVLQH2OLQ',
-              }
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: 'https://babylonchain.io/blog',
-              },
-            ],
-          },
-        ],
-        
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
+        {
+          href: 'https://github.com/babylonchain',
+          label: 'GitHub',
+          position: 'right',
+        },
+        {
+          href: 'https://babylonchain.io/about',
+          label: 'About',
+          position: 'right',
+        },
+        {
+          href: 'https://babylonchain.io/contact',
+          label: 'Contact',
+          position: 'right',
+        },
+      ],
+    },
+    footer: {
+      style: 'dark', // Dark theme footer
+      links: [
+        {
+          title: 'Docs',
+          items: [
+            {
+              label: 'Documentation',
+              to: '/docs/introduction/overview',
+            },
+          ],
+        },
+        {
+          title: 'Community',
+          items: [
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/company/babylon-chain',
+            },
+            {
+              label: 'Twitter',
+              href: 'https://www.twitter.com/babylon_chain',
+            },
+            {
+              label: 'Youtube',
+              href: 'https://www.youtube.com/channel/UCmnied_wAVVa2ECVLQH2OLQ',
+            },
+          ],
+        },
+        {
+          title: 'More',
+          items: [
+            {
+              label: 'Blog',
+              to: 'https://babylonchain.io/blog',
+            },
+          ],
+        },
+      ],
+    },
+    prism: {
+      theme: lightCodeTheme,
+      darkTheme: darkCodeTheme,
+    },
+  },
 };
 
 module.exports = config;
